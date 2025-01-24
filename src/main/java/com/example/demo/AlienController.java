@@ -43,6 +43,7 @@ public class AlienController {
     
     @RequestMapping("addAlien")
     public String addAlien(Alien a,Model m) {
+    	m.addAttribute("message","ADD ALIEN");
     	Optional<Alien> a1=repo.findById(a.getAid());
     	if(a1.isPresent()) {
     		m.addAttribute("result","Record already present with id: " + a.getAid());
@@ -56,6 +57,7 @@ public class AlienController {
     
     @RequestMapping("deleteAlien")
     public String deleteAlien(@RequestParam("aid") int id,Model m) {
+    	m.addAttribute("message","DELETE ALIEN");
     	Optional<Alien> a = repo.findById(id);
     	if(a.isPresent()) {
     	repo.deleteById(id);
@@ -70,6 +72,7 @@ public class AlienController {
     
     @RequestMapping("updateAlien")
     public String updateAlien(@ModelAttribute Alien a,Model m) {
+    	m.addAttribute("message","UPDATE ALIEN");
     	Optional<Alien> a1 = repo.findById(a.getAid());
     	if(a1.isPresent()) {
     	 repo.save(a);
@@ -85,6 +88,7 @@ public class AlienController {
     
     @RequestMapping("getAlien")
     public String getAlien(@RequestParam("aid") int id,Model m) {
+    	m.addAttribute("message","GET ONE ALIEN");
     	Optional<Alien> a1 = repo.findById(id);
     	if(a1.isPresent()) {
     	m.addAttribute("result",a1);
@@ -97,6 +101,7 @@ public class AlienController {
     
     @RequestMapping("getAlienByName")
     public String getAlienByName(@RequestParam("aname") String name,Model m) {
+    	m.addAttribute("message","GET ALIEN BY NAME ALIEN");
     	List<Alien> totalAliens = repo.findByAname(name);
     	
     	if(!totalAliens.isEmpty()) {
@@ -110,6 +115,7 @@ public class AlienController {
     
     @RequestMapping("getAliens")
     public String getAliens(Model m) {
+    	m.addAttribute("message","ALL ALIENS");
     	m.addAttribute("result",repo.findAll());
     	return "result";
     }

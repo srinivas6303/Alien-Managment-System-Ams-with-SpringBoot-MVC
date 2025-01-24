@@ -39,6 +39,7 @@
     </style>
 </head>
 <body>
+	<h1>${message}</h1>
     <h2>${result}</h2>
     <button class="back-button" onclick="window.location.href='/'">Back to Home</button>
 </body>
